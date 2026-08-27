@@ -1,0 +1,388 @@
+/* ==========================================================================
+   Kaitiakitanga — cosmic.css
+   Kozmik ana sayfa: yıldızlar, galaksi, gezegenler, kadim simgeler, hero search.
+   ========================================================================== */
+
+body.is-cosmic {
+    background:
+        radial-gradient(ellipse at 20% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 45%),
+        radial-gradient(ellipse at 80% 10%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(236, 72, 153, 0.08) 0%, transparent 55%),
+        linear-gradient(180deg, #0a0a1f 0%, #0e0e2a 35%, #0a0a1f 100%);
+    color: #f5f5fa;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.is-cosmic a { color: #c7d2fe; }
+body.is-cosmic a:hover { color: #fff; }
+
+body.is-cosmic .site-header {
+    background: rgba(10, 10, 31, 0.78);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+body.is-cosmic .site-logo-text,
+body.is-cosmic .nav-menu > li > a { color: #fff; }
+body.is-cosmic .nav-menu > li > a:hover,
+body.is-cosmic .nav-menu > li.current-menu-item > a {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+body.is-cosmic .btn-icon { color: #fff; border-color: rgba(255,255,255,0.15); }
+
+body.is-cosmic .glass-card,
+body.is-cosmic .glass-meta {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    color: #f5f5fa;
+}
+
+/* ----------------------- Cosmic Background Container -------------------- */
+.cosmic-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.cosmic-stars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Galaksi ve gezegen katmanları kaldırıldı — animasyon artık yalnızca
+ * yıldız alanı (canvas) ve kadim uygarlık sembollerinden oluşuyor. */
+
+/* --------------------------- Ancient Symbols ---------------------------- */
+.cosmic-ancient {
+    position: absolute;
+    color: rgba(199, 210, 254, 0.18);
+    width: 90px;
+    height: 90px;
+    filter: drop-shadow(0 0 8px rgba(199, 210, 254, 0.2));
+    animation: ancientGlow 8s ease-in-out infinite;
+}
+
+.ancient-1 { top: 28%; left: 18%; animation-delay: 0s; }
+.ancient-2 { top: 72%; right: 22%; width: 70px; height: 70px; animation-delay: 1.5s; }
+.ancient-3 { top: 42%; left: 42%; width: 100px; height: 100px; animation-delay: 3s; }
+.ancient-4 { top: 22%; right: 30%; width: 80px; height: 80px; animation-delay: 4.5s; }
+.ancient-5 { top: 78%; left: 38%; width: 75px; height: 75px; animation-delay: 6s; }
+/* Gezegenlerin boş bıraktığı bölgeler yeni kadim sembollerle dolduruldu. */
+.ancient-6 { top: 16%; left: 6%; width: 85px; height: 85px; animation-delay: 2s; }   /* piramit */
+.ancient-7 { top: 58%; left: 11%; width: 70px; height: 70px; animation-delay: 5s; }  /* ankh */
+.ancient-8 { top: 52%; right: 7%; width: 95px; height: 95px; animation-delay: 1s; }  /* İştirar yıldızı */
+
+@keyframes ancientGlow {
+    0%, 100% { opacity: 0.12; transform: scale(1) rotate(0deg); }
+    50% { opacity: 0.28; transform: scale(1.06) rotate(8deg); }
+}
+
+/* ------------------------------ Hero ------------------------------------ */
+.front-main { position: relative; z-index: 1; }
+
+.cosmic-hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 20px 3rem;
+    position: relative;
+}
+
+.cosmic-hero-inner { max-width: 900px; }
+
+.hero-title {
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 1.6rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.hero-title-text {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(135deg, #fff 0%, #c7d2fe 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from { filter: drop-shadow(0 0 12px rgba(199,210,254,0.4)); }
+    to   { filter: drop-shadow(0 0 24px rgba(199,210,254,0.8)); }
+}
+
+/* --------------------------- Hero search -------------------------------- */
+.hero-search {
+    width: 100%;
+    max-width: 640px;
+    margin: 1.6rem auto 1.5rem;
+    position: relative;
+}
+
+.hero-search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.45rem 0.45rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.hero-search-form:focus-within {
+    border-color: rgba(199, 210, 254, 0.7);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 4px rgba(199, 210, 254, 0.12);
+}
+
+.hero-search-icon {
+    color: #c7d2fe;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+
+.hero-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.65em 0.3em;
+    min-width: 0;
+}
+.hero-search-input::placeholder { color: rgba(255, 255, 255, 0.55); }
+
+.hero-search-submit { flex-shrink: 0; }
+
+body.is-cosmic .btn-primary { background: var(--color-accent); color: #fff; }
+
+/* =============== Sonuçlar paneli (Grokpedia tarzı) =============== */
+.hero-search-results {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    left: 0;
+    right: 0;
+    background: rgba(13, 13, 30, 0.96);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    max-height: min(72vh, 640px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    animation: searchPanelIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes searchPanelIn {
+    from { opacity: 0; transform: translateY(-8px) scale(0.99); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero-search-results[hidden] { display: none; }
+
+.ls-state {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    text-align: center;
+    color: #c7d2fe;
+    font-size: 0.95rem;
+}
+.ls-loading { flex-direction: row; gap: 0.7rem; }
+.ls-spinner {
+    width: 22px; height: 22px;
+    border: 2.5px solid rgba(199, 210, 254, 0.2);
+    border-top-color: var(--color-accent);
+    border-radius: 50%;
+    animation: lsSpin 0.7s linear infinite;
+}
+@keyframes lsSpin { to { transform: rotate(360deg); } }
+
+.ls-empty { gap: 0.9rem; }
+.ls-empty-icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(199, 210, 254, 0.08);
+    border: 1px solid rgba(199, 210, 254, 0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: #c7d2fe; font-size: 1.15rem;
+}
+.ls-empty-text { display: flex; flex-direction: column; gap: 0.25rem; color: #c7d2fe; }
+.ls-empty-text strong { color: #fff; font-size: 0.98rem; font-weight: 600; }
+.ls-empty-text span { color: #9ca3af; font-size: 0.85rem; }
+
+.ls-list {
+    list-style: none; margin: 0; padding: 0.5rem;
+    overflow-y: auto; flex: 1;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(199, 210, 254, 0.3) transparent;
+}
+.ls-list::-webkit-scrollbar { width: 8px; }
+.ls-list::-webkit-scrollbar-track { background: transparent; }
+.ls-list::-webkit-scrollbar-thumb { background: rgba(199, 210, 254, 0.2); border-radius: 999px; }
+.ls-list::-webkit-scrollbar-thumb:hover { background: rgba(199, 210, 254, 0.35); }
+
+.ls-item {
+    display: flex; align-items: center; gap: 0.9rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.18s ease;
+    position: relative;
+    margin-bottom: 0.25rem;
+}
+.ls-item:hover, .ls-item.is-active { background: rgba(255, 255, 255, 0.06); }
+.ls-item.is-active {
+    background: rgba(199, 210, 254, 0.12);
+    box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+.ls-thumb {
+    width: 56px; height: 56px; flex-shrink: 0;
+    border-radius: 10px; overflow: hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #475569; font-size: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ls-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ls-thumb-empty {
+    background: linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.15) 100%);
+    color: #c7d2fe;
+}
+
+.ls-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.2rem; }
+.ls-title {
+    margin: 0; font-size: 0.98rem; font-weight: 600; color: #fff;
+    line-height: 1.4;
+    overflow: hidden; text-overflow: ellipsis;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+}
+.ls-excerpt {
+    margin: 0; font-size: 0.82rem; color: #9ca3af; line-height: 1.45;
+    overflow: hidden; text-overflow: ellipsis;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+}
+.ls-excerpt mark, .ls-title mark {
+    background: rgba(250, 204, 21, 0.25); color: #fde68a;
+    padding: 0 2px; border-radius: 3px;
+}
+.ls-meta {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 0.55rem; margin-top: 0.2rem; font-size: 0.76rem;
+}
+.ls-cat {
+    color: #c7d2fe;
+    background: rgba(199, 210, 254, 0.12);
+    padding: 0.15em 0.6em; border-radius: 999px;
+    font-weight: 500; letter-spacing: 0.02em;
+}
+.ls-date { color: #9ca3af; display: inline-flex; align-items: center; gap: 0.3em; }
+
+.ls-arrow {
+    color: #6b7280; font-size: 0.85rem; flex-shrink: 0;
+    transition: color 0.18s ease, transform 0.18s ease;
+}
+.ls-item:hover .ls-arrow, .ls-item.is-active .ls-arrow {
+    color: var(--color-accent); transform: translateX(2px);
+}
+
+.ls-all {
+    display: flex; align-items: center; justify-content: center; gap: 0.55em;
+    padding: 0.85rem 1rem; margin: 0;
+    background: linear-gradient(135deg, rgba(99,102,241,0.18) 0%, rgba(168,85,247,0.18) 100%);
+    color: #fff; text-decoration: none;
+    font-weight: 600; font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+.ls-all:hover {
+    background: linear-gradient(135deg, rgba(99,102,241,0.35) 0%, rgba(168,85,247,0.35) 100%);
+    text-decoration: none; color: #fff;
+}
+.ls-all i { transition: transform 0.2s ease; }
+.ls-all:hover i { transform: translateX(3px); }
+
+/* Fade-in animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-title {
+    opacity: 0;
+    animation: fadeInTitle 1.2s ease 0.2s forwards;
+}
+@keyframes fadeInTitle {
+    0% { opacity: 0; transform: scale(0.92); filter: blur(8px); }
+    60% { opacity: 1; transform: scale(1.02); filter: blur(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+    .cosmic-ancient { width: 65px; height: 65px; }
+    .ancient-3 { width: 75px; height: 75px; }
+    .ancient-8 { width: 68px; height: 68px; }
+    .hero-search { max-width: 100%; }
+    .hero-search-form { padding: 0.4rem 0.4rem 0.4rem 0.85rem; }
+    .hero-search-input { font-size: 16px; padding: 0.55em 0.2em; }
+    .hero-search-submit { padding: 0.5em 1em; font-size: 0.9rem; }
+    .hero-search-results {
+        position: fixed;
+        top: auto; bottom: 0; left: 0; right: 0;
+        max-height: 85vh;
+        border-radius: 18px 18px 0 0;
+        animation: searchPanelInMobile 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes searchPanelInMobile {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .ls-item { padding: 0.65rem 0.7rem; gap: 0.7rem; }
+    .ls-thumb { width: 48px; height: 48px; }
+    .ls-title { font-size: 0.92rem; }
+    .ls-excerpt { display: none; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .cosmic-ancient,
+    .hero-title-text,
+    .fade-in-up,
+    .fade-in-title {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
